@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+  @State private var showingAlert = false
+
+  var body: some View {
+      Button("Show Alert") {
+        showingAlert = true
+      }
+      .alert("Important message", isPresented: $showingAlert) {
+        Button("OK", role: .destructive) { }
+      } message: {
+        Text("Please read this.")
+      }
+
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+      ContentView()
+        .previewDevice("iPhone 11 Pro Max")
     }
 }
